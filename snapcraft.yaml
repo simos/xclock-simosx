@@ -1,0 +1,43 @@
+name: xclock-simosx
+version: '1.0.7' # just for humans, typically '1.2+git' or '1.3.2'
+summary: A simple X11 clock application
+description: |
+  The xclock package contains a simple clock application
+  which is used in the default xinit configuration. This package 
+  is not a part of the Xorg katamari and is provided only 
+  as a dependency to other packages or for testing 
+  the completed Xorg installation. 
+
+grade: stable
+confinement: strict
+
+apps:
+  xclock:
+    command: xclock
+    plugs:
+      - x11
+      - unity7
+      - wayland
+      - home
+
+parts:
+  xclock:
+    source: https://www.x.org/pub/individual/app/xclock-1.0.7.tar.bz2
+    source-type: tar
+    plugin: autotools
+    build-packages:
+      - pkg-config
+      - libx11-dev
+      - libxmu-dev
+      - libxaw7-dev
+      - libxrender-dev
+      - libxft-dev
+      - libxkbfile-dev
+    stage-packages:
+      - libx11-6
+      - libxmu6
+      - libxaw7
+      - libxrender1
+      - libxft2
+      - libxkbfile1
+
